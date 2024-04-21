@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Wanderlust - Your Ultimate Travel Blog 🌍✈️
 
 WanderLust is a simple MERN travel blog website ✈ This project is aimed to help people to contribute in open source, upskill in react and also master git.
@@ -105,7 +104,3 @@ Kindly go through [CONTRIBUTING.md](https://github.com/krishnaacharyaa/wanderlus
 If you find this project interesting and inspiring, please consider showing your support by starring it on GitHub! Your star goes a long way in helping me reach more developers and encourages me to keep enhancing the project.
 
 🚀 Feel free to get in touch with me for any further queries or support, happy to help :)
-=======
-# wanderlust
-WanderLust is a simple MERN travel blog website 🚀 (3tier application with React, Javascript and MongoDB)
->>>>>>> 69a694a65af9605afe112a4ae7ffc4e8d94b7bd2
