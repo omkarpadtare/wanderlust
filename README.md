@@ -35,10 +35,43 @@ _I'd love for you to make the most of this project - it's all about learning, he
 3. **Install Required Dependencies**
 
    ```bash
+   # installs NVM (Node Version Manager)
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+   # Reboot the system
+   # download and install Node.js
+   nvm install 21
+
+   # verifies the right Node.js version is in the environment
+   node -v # should print `v21.7.3`
+
+   # verifies the right NPM version is in the environment
+   npm -v # should print `10.5.0`
+
    npm i
    ```
 
 4. **Set up your MongoDB Database**
+
+   #install MongoDB 
+   ```bash
+   
+   #Import the public key used by the package management system
+   sudo apt-get install gnupg curl
+
+   #To import the MongoDB public GPG key, run the following command:
+   curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+
+   #Create a list file for MongoDB
+   echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+   
+   sudo apt-get update
+
+   #To install the latest stable version
+   sudo apt-get install -y mongodb-org
+   ```
 
    - Open MongoDB Compass and connect MongoDB locally at `mongodb://localhost:27017`.
 
