@@ -12,7 +12,7 @@ on:
 jobs:
   Backend-Setup:
 
-    runs-on: self-hosted #runner
+    runs-on: lable1 #runner
 
     steps:
     - uses: actions/checkout@v3
@@ -32,7 +32,7 @@ jobs:
 
   Frontend-Setup:
 
-    runs-on: self-hosted #runner
+    runs-on: lable1 #runner
 
     steps:
     - uses: actions/checkout@v3
