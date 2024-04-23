@@ -22,42 +22,42 @@ jobs:
         with:
           format: 'ALL'
 
-  Backend-Setup:
+  # Backend-Setup:
 
-    runs-on: lable1 #runner
+  #   runs-on: lable1 #runner
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v3
 
-    - name: install backend dependencies
-      run: cd backend && npm i 
+  #   - name: install backend dependencies
+  #     run: cd backend && npm i 
       
-    - name: copy uri to .env 
-      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
+  #   - name: copy uri to .env 
+  #     run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
     
-    - name: start backend server
-      run: |
-          # (cd backend && npm start > server.log 2>&1 &)
-          cd backend && npm start
+  #   - name: start backend server
+  #     run: |
+  #         # (cd backend && npm start > server.log 2>&1 &)
+  #         cd backend && npm start
 
-  Frontend-Setup:
+  # Frontend-Setup:
 
-    runs-on: lable1 #runner
+  #   runs-on: lable1 #runner
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v3
 
-    - name: install frontend dependencies
-      run: cd frontend && npm i 
+  #   - name: install frontend dependencies
+  #     run: cd frontend && npm i 
       
-    - name: copy uri to .env 
-      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env.local
+  #   - name: copy uri to .env 
+  #     run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env.local
     
-    - name: start frontend
-      run: |
+  #   - name: start frontend
+  #     run: |
           # (cd backend && npm start > server.log 2>&1 &)
           cd frontend && npm run dev
