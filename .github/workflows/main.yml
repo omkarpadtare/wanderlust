@@ -10,6 +10,18 @@ on:
     branches: [ "SumitRamchandra-patch-1" ]
 
 jobs:
+  scan-dependencies:
+    runs-on: lable1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: cd backend && npm install
+      - name: Run dependency scanner
+        uses: denizaydin/dependency-check-action@v2
+        with:
+          format: 'ALL'
+
   Backend-Setup:
 
     runs-on: lable1 #runner
