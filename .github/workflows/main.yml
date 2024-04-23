@@ -12,7 +12,7 @@ on:
 jobs:
   Backend-Setup:
 
-    runs-on: self-hosted
+    runs-on: self-hosted #runner
 
     steps:
     - uses: actions/checkout@v3
