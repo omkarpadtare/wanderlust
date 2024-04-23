@@ -48,4 +48,4 @@ jobs:
     - name: start frontend
       run: |
           # (cd backend && npm start > server.log 2>&1 &)
-          cd backend && npm run dev
+          cd frontend && npm run dev
