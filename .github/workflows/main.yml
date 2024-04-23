@@ -21,5 +21,6 @@ jobs:
       
     - run: cd /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend 
     - run: npm i 
+    - run: ls -a
     - run: cp .env.sample .env
     - run: npm start
