@@ -27,4 +27,5 @@ jobs:
     
     - name: start backend server
       run: |
-          (cd backend && npm start) &
+          (cd backend && npm start > server.log 2>&1 &)
+          # (cd backend && npm start) &
