@@ -15,13 +15,12 @@ jobs:
     runs-on: self-hosted #runner
 
     steps:
-    # - run: cd /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend
     - uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
       
     - run: cd /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend  
     - run: ls -a
-    - run: npm i 
+    - run: cd backend && npm i 
     - run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
     - run: cd backend && npm start
