@@ -10,54 +10,54 @@ on:
     branches: [ "SumitRamchandra-patch-1" ]
 
 jobs:
-  scan-dependencies:
-    runs-on: lable1
+  # scan-dependencies:
+  #   runs-on: lable1
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Install dependencies
+  #       run: cd backend && npm install
+  #     - name: Run dependency scanner
+  #       uses: denizaydin/dependency-check-action@v2
+  #       with:
+  #         format: 'ALL'
+  Frontend-Setup:
+
+    runs-on: lable1 #runner
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: cd backend && npm install
-      - name: Run dependency scanner
-        uses: denizaydin/dependency-check-action@v2
-        with:
-          format: 'ALL'
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
 
-  # Backend-Setup:
-
-  #   runs-on: lable1 #runner
-
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Use Node.js
-  #     uses: actions/setup-node@v3
-
-  #   - name: install backend dependencies
-  #     run: cd backend && npm i 
+    - name: install frontend dependencies
+      run: cd frontend && npm i 
       
-  #   - name: copy uri to .env 
-  #     run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
+    - name: copy uri to .env 
+      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env.local
     
-  #   - name: start backend server
-  #     run: |
-  #         # (cd backend && npm start > server.log 2>&1 &)
-  #         cd backend && npm start
+    - name: start frontend
+      run: |
+          cd frontend && nohup npm run dev -- --host &
+          
+  Backend-Setup:
 
-  # Frontend-Setup:
+    runs-on: lable1 #runner
 
-  #   runs-on: lable1 #runner
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
 
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Use Node.js
-  #     uses: actions/setup-node@v3
-
-  #   - name: install frontend dependencies
-  #     run: cd frontend && npm i 
+    - name: install backend dependencies
+      run: cd backend && npm i 
       
-  #   - name: copy uri to .env 
-  #     run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env.local
+    - name: copy uri to .env 
+      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
     
-  #   - name: start frontend
-  #     run: |
+    - name: start backend server
+      run: |
           # (cd backend && npm start > server.log 2>&1 &)
-          # cd frontend && npm run dev
+          cd backend && npm start
+
+
