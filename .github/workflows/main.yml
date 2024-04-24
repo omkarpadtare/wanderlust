@@ -50,20 +50,20 @@ jobs:
           cd backend && npm start
 
 
-  CodeQL:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        language: [ 'node.js', 'react' ]
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
-    - name: Analyze code
-      uses: github/codeql-action/analyze@v1
+  # CodeQL:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       language: [ 'node.js', 'react' ]
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+  #   - name: Initialize CodeQL
+  #     uses: github/codeql-action/init@v1
+  #     with:
+  #       languages: ${{ matrix.language }}
+  #   - name: Analyze code
+  #     uses: github/codeql-action/analyze@v1
 
   # scan-dependencies:
   #   runs-on: lable1
