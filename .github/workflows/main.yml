@@ -21,10 +21,10 @@ jobs:
   #       uses: denizaydin/dependency-check-action@v2
   #       with:
   #         format: 'ALL'
-  Frontend-Setup:
+  
+  Runtime-Setup:
 
     runs-on: lable1 #runner
-
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js
@@ -40,14 +40,14 @@ jobs:
       run: |
           cd frontend && nohup npm run dev -- --host &
           
-  Backend-Setup:
+  # Backend-Setup:
 
-    runs-on: lable1 #runner
+  #   runs-on: lable1 #runner
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v3
 
     - name: install backend dependencies
       run: cd backend && npm i 
