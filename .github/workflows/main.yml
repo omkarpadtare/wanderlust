@@ -10,18 +10,7 @@ on:
     branches: [ "SumitRamchandra-patch-1" ]
 
 jobs:
-  # scan-dependencies:
-  #   runs-on: lable1
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
-  #     - name: Install dependencies
-  #       run: cd backend && npm install
-  #     - name: Run dependency scanner
-  #       uses: denizaydin/dependency-check-action@v2
-  #       with:
-  #         format: 'ALL'
-  
+
   Runtime-Setup:
 
     runs-on: lable1 #runner
@@ -61,3 +50,30 @@ jobs:
           cd backend && npm start
 
 
+  CodeQL:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [ 'node.js', 'react' ]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+    - name: Analyze code
+      uses: github/codeql-action/analyze@v1
+
+  # scan-dependencies:
+  #   runs-on: lable1
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Install dependencies
+  #       run: cd backend && npm install
+  #     - name: Run dependency scanner
+  #       uses: denizaydin/dependency-check-action@v2
+  #       with:
+  #         format: 'ALL'
+  
