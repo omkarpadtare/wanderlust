@@ -1,0 +1,79 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "SumitRamchandra-patch-1" ]
+  pull_request:
+    branches: [ "SumitRamchandra-patch-1" ]
+
+jobs:
+
+  Runtime-Setup:
+
+    runs-on: lable1 #runner
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+
+    - name: install frontend dependencies
+      run: cd frontend && npm i 
+      
+    - name: copy uri to .env 
+      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env.local
+    
+    - name: start frontend
+      run: |
+          cd frontend && nohup npm run dev -- --host &
+          
+  # Backend-Setup:
+
+  #   runs-on: lable1 #runner
+
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v3
+
+    - name: install backend dependencies
+      run: cd backend && npm i 
+      
+    - name: copy uri to .env 
+      run: cp /home/fs-lp-56/actions-runner/_work/wanderlust/wanderlust/backend/.env.sample .env
+    
+    - name: start backend server
+      run: |
+          # (cd backend && npm start > server.log 2>&1 &)
+          cd backend && npm start
+
+
+  # CodeQL:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       language: [ 'node.js', 'react' ]
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+  #   - name: Initialize CodeQL
+  #     uses: github/codeql-action/init@v1
+  #     with:
+  #       languages: ${{ matrix.language }}
+  #   - name: Analyze code
+  #     uses: github/codeql-action/analyze@v1
+
+  # scan-dependencies:
+  #   runs-on: lable1
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Install dependencies
+  #       run: cd backend && npm install
+  #     - name: Run dependency scanner
+  #       uses: denizaydin/dependency-check-action@v2
+  #       with:
+  #         format: 'ALL'
+  
