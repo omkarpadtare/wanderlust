@@ -20,14 +20,14 @@ pipeline {
                     // Build and push Docker images defined in docker-compose.yml
                     def services = ['backend', 'frontend'] // List your services here
                     for (service in services) {
-                        def image = "omkarphadtare321/${service}"
+                        def image = "omkarphadtare321/wanderlust-${service}"
                         def tag = 'latest'
                         
                         // Build the Docker image
                         sh "docker compose -f ${DOCKER_COMPOSE_FILE} build ${service}"
                         
                         // Tag the Docker image
-                        sh "docker tag ${service}:latest ${image}:${tag}"
+                        sh "docker tag wanderlust-${service}:latest ${image}:${tag}"
                         
                         // Push the Docker image to Docker Hub
                         // docker.withRegistry('https://registry.hub.docker.com/', 'docker-cred') {
