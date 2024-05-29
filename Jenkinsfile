@@ -18,9 +18,9 @@ pipeline {
             steps {
                 script {
                     // Build and push Docker images defined in docker-compose.yml
-                    def services = ['client', 'server'] // List your services here
+                    def services = ['backend', 'frontend'] // List your services here
                     for (service in services) {
-                        def image = "omkarphadtare321/nodejs-applicaiton_master-${service}"
+                        def image = "omkarphadtare321/${service}"
                         def tag = 'latest'
                         
                         // Build the Docker image
