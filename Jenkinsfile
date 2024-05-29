@@ -27,7 +27,7 @@ pipeline {
                         sh "docker compose -f ${DOCKER_COMPOSE_FILE} build ${service}"
                         
                         // Tag the Docker image
-                        sh "docker tag nodejs-applicaiton_master-${service}:latest ${image}:${tag}"
+                        sh "docker tag ${service}:latest ${image}:${tag}"
                         
                         // Push the Docker image to Docker Hub
                         // docker.withRegistry('https://registry.hub.docker.com/', 'docker-cred') {
