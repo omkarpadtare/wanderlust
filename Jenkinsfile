@@ -43,6 +43,7 @@ pipeline {
                 // Use Docker Compose to deploy the services
                 sh 'docker compose down'
                 sh 'docker compose up -d'
+                sh 'sudo docker exec mongo mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray'
             }
         }
     }
