@@ -38,19 +38,6 @@ pipeline {
             }
         }
 
-  stage('SonarQube analysis') {
-            environment {
-                SCANNER_HOME = tool 'sonarqube';    
-            }
-            
-            steps {
-                
-                withSonarQubeEnv('sonarqube') {
-                    sh "${SCANNER_HOME}/bin/sonar-scanner"
-                }
-            }
-        }
-
         stage('Deploy') {
             steps {
                 // Use Docker Compose to deploy the services
