@@ -5,6 +5,7 @@ pipeline {
         // Define environment variables
         DOCKERHUB_CREDENTIALS = credentials('docker-cred')
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+        scannerHome = tool 'Sonar'
     }
     
     stages {  
@@ -41,7 +42,6 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 script{
-                    def scannerHome = tool 'SonarScanner 4.0';
                     withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
                     sh "${scannerHome}/bin/sonar-scanner"
             }
