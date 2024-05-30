@@ -5,7 +5,6 @@ pipeline {
         // Define environment variables
         DOCKERHUB_CREDENTIALS = credentials('docker-cred')
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
-        SONARQUBE_SCANNER_HOME = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
     
     stages {  
@@ -39,23 +38,12 @@ pipeline {
             }
         }
 
-        stage('SonarQube Scan') {
-            environment {
-                // Use the SonarQube token stored in Jenkins credentials
-                SONAR_TOKEN = credentials('sonar-token')
-            }
-            steps {
-                withSonarQubeEnv('SonarQube Server') {
-                    sh '''
-                        ${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner \
-                        -Dsonar.projectKey=wanderlust \
-                        -Dsonar.sources=./src \
-                        -Dsonar.host.url=http://54.156.7.93:9000 \
-                        -Dsonar.login=${SONAR_TOKEN}
-                    '''
-                }
-            }
-        }
+        stage('SonarQube analysis') {
+            def scannerHome = tool 'SonarScanner 4.0';
+            withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+            sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
 
         stage('Deploy') {
             steps {
