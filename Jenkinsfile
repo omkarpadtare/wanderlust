@@ -29,7 +29,7 @@ pipeline {
                         // Tag the Docker image
                         sh "docker tag nodejs-applicaiton_${GIT_BRANCH}-${service}:latest ${image}:${tag}"
                         
-                        // Push the Docker image to Docker Hub
+                        // Push  the Docker image to Docker Hub
                         // docker.withRegistry('https://registry.hub.docker.com/', 'docker-cred') {
                         //     sh "docker push ${image}:${tag}"
                         // }
@@ -39,11 +39,14 @@ pipeline {
         }
 
         stage('SonarQube analysis') {
+            steps{
+                
             def scannerHome = tool 'SonarScanner 4.0';
             withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
             sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }
+            }
+        }
+      }
 
         stage('Deploy') {
             steps {
