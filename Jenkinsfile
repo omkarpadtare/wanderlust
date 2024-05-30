@@ -38,19 +38,15 @@ pipeline {
             }
         }
 
-        stage('Code Analysis') {
+  stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'sonarqube'
+                SCANNER_HOME = tool 'sonarqube';    
             }
+            
             steps {
-                script {
-                    withSonarQubeEnv('Sonar') {
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=<project-key> \
-                            -Dsonar.projectName=<project-name> \
-                            -Dsonar.projectVersion=<project-version> \
-                            -Dsonar.sources=<project-path>"
-                    }
+                
+                withSonarQubeEnv('SonarQube') {
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
                 }
             }
         }
