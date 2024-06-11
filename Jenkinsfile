@@ -40,12 +40,16 @@ pipeline {
 
         stage('SonarQube analysis') {
               steps {
+                dir("${WORKSPACE}"){
+                // Run SonarQube analysis for Python
                 script {
-                    scannerHome = tool 'sonarqube'// must match the name of an actual scanner installation directory on your Jenkins build agent
+                    def scannerHome = tool name: 'sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "echo $pwd"
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
-                withSonarQubeEnv('sonarqube') {// If you have configured more than one global server connection, you can specify its name as configured in Jenkins
-                  sh "${scannerHome}/bin/sonar-scanner"
-                }
+            }
               }
             }
 
